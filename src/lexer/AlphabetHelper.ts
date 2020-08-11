@@ -9,7 +9,7 @@ export class AlphabetHelper {
     return AlphabetHelper.ptnLetter.test(c);
   }
 
-  static isNumber(c: string) {
+  static isNumber(c: string): boolean {
     return AlphabetHelper.ptnNumber.test(c);
   }
 

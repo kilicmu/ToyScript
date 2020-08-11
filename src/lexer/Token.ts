@@ -264,10 +264,14 @@ export class Token {
       const lookahead = it.peek();
       switch (state) {
         case 1:
-          if (lookahead === '0') {
+          if (AlphabetHelper.isNumber(<string>lookahead) && lookahead !== '0') {
             state = 1;
           } else if (lookahead === '.') {
-            state = 
+            state = 2
+          } else if (lookahead === '+' || lookahead === '-') {
+            state = 3;
+          } else if (lookahead === '0') {
+            state = 4;
           }
           break;
       }
