@@ -8,7 +8,8 @@ export const TokenType = {
   INTEGER: new Emnu('INTEGER'),
   FLOAT: new Emnu('FLOAT'),
   BOOLEAN: new Emnu('BOOLEAN'),
-  STRING: new Emnu('STRING')
-}
+  STRING: new Emnu('STRING'),
+  NUMBER: new Emnu('NuMBER'),
+};
 
 Object.freeze(TokenType);

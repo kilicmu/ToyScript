@@ -9,26 +9,27 @@ describe('alphabet-helper test', () => {
     equal(isLetter('A'), true);
     equal(isLetter('_'), false);
     equal(isLetter('*'), false);
-
-  })
+  });
   it('isNumber', () => {
     const isNumber = AlphabetHelper.isNumber;
     equal(isNumber('0'), true);
     equal(isNumber('4'), true);
     equal(isNumber('9'), true);
-  })
+    equal(isNumber('.'), false);
+    equal(isNumber('2'), true);
+  });
   it('isLiteral', () => {
     const isLiteral = AlphabetHelper.isLiteral;
     equal(isLiteral('_'), true);
     equal(isLiteral('A'), true);
     equal(isLiteral('&'), false);
     equal(isLiteral('-'), false);
-  })
+  });
   it('isOperator', () => {
     const isOperator = AlphabetHelper.isOperator;
-    equal(isOperator('+'), true)
-    equal(isOperator('%'), true)
-    equal(isOperator('0'), false)
-    equal(isOperator('Z'), false)
-  })
-})
+    equal(isOperator('+'), true);
+    equal(isOperator('%'), true);
+    equal(isOperator('0'), false);
+    equal(isOperator('Z'), false);
+  });
+});
