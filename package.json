@@ -7,7 +7,7 @@
     "serve": "rollup -c -w",
     "lint": "eslint 'src/**/*.{js,ts}",
     "build": "rollup -c --environment FORMAT:min",
-    "test": "npx mocha -r ./node_modules/ts-node/register test/**/*.ts",
+    "test": "npx mocha -r ./node_modules/ts-node/register test/**/*.test.ts",
     "coverage": "npx nyc --reporter=text --reporter=html yarn test"
   },
   "devDependencies": {

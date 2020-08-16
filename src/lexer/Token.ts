@@ -5,11 +5,10 @@ import { PeekGenerator } from './../common/PeekGenerator';
 import { AlphabetHelper } from './AlphabetHelper';
 import { Emnu } from './../common/Emnu';
 import { LexicalException } from './LexicalException';
-import { isRegExp } from 'util';
 export class Token {
-  private _type: Emnu;
+  private _type: string;
   private _value: string;
-  constructor(type: Emnu, value: string) {
+  constructor(type: string, value: string) {
     this._type = type;
     this._value = value;
   }
@@ -29,14 +28,13 @@ export class Token {
   isScalar() {
     return (
       this._type == TokenType.INTEGER ||
-      this._type == TokenType.FLOAT ||
       this._type == TokenType.STRING ||
       this._type == TokenType.BOOLEAN
     );
   }
 
   toString() {
-    return `type ${this._type.type}, value ${this._value}`;
+    return `type ${this._type}, value ${this._value}`;
   }
 
   static makeVarOrKeyword(it: PeekGenerator<string>) {
@@ -56,6 +54,10 @@ export class Token {
     }
     if (s === 'true' || s === 'false') {
       return new Token(TokenType.BOOLEAN, s);
+    }
+
+    if (s === 'null') {
+      return new Token(TokenType.NULL, s);
     }
 
     return new Token(TokenType.VARIABLE, s);
@@ -337,5 +339,10 @@ export class Token {
       }
     } // end while
     throw new LexicalException(`Unexpected error`);
+  }
+
+  static makeBracket(it: PeekGenerator<string>) {
+    const bracket = it.next();
+    return new Token(TokenType.BRACKET, bracket as string);
   }
 }

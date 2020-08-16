@@ -1,7 +1,7 @@
 
 export class PeekGenerator<T> {
   static MAX_SIZE = 20;
-  private it: Generator;
+  protected it: Generator;
   private pushBacksStack: Array<T> = [];
   private queueCache: Array<T> = [];
   private endToken: T | null;
@@ -36,7 +36,7 @@ export class PeekGenerator<T> {
       if (val == null) {
         const tmp = this.endToken;
         this.endToken = null;
-        return tmp;
+        val = tmp as T;
       }
     }
 

@@ -1,5 +1,5 @@
+import { AlphabetHelper } from './../src/lexer/AlphabetHelper';
 import { assert } from 'chai';
-import { AlphabetHelper } from '../src/lexer/AlphabetHelper';
 import { equal } from '../src/common/equal';
 
 describe('alphabet-helper test', () => {
@@ -32,4 +32,13 @@ describe('alphabet-helper test', () => {
     equal(isOperator('0'), false);
     equal(isOperator('Z'), false);
   });
+
+  it('isBarket', () => {
+    const isBarket = AlphabetHelper.isBracket;
+    const arr = ['[', ']', '(', ')', '{', '}'];
+    for (const item of arr) {
+      equal(isBarket(item), true);
+    }
+    equal(isBarket('.'), false);
+  })
 });

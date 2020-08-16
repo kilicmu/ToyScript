@@ -3,11 +3,8 @@ import { Token } from './../src/lexer/Token';
 import { TokenType } from './../src/contants/TokenTypes';
 import { PeekGenerator } from './../src/common/PeekGenerator';
 import { array2Gen } from '../src/common/array2Gen';
-import { equal } from '../src/common/equal';
-function checkToken(token: Token, type: Emnu, value: string) {
-  equal(token.type, type);
-  equal(token.value, value);
-}
+import { checkToken, equal } from '../src/common/equal';
+
 
 describe('token test', () => {
   it('varOrKeyword', () => {
@@ -65,5 +62,15 @@ describe('token test', () => {
     const it2 = new PeekGenerator<string>(array2Gen(arr2[1]));
     const token2 = Token.makeNumber(it2);
     checkToken(token2, TokenType.NUMBER, '2');
+  });
+
+
+  it('makeBracket test: ', () => {
+    const arr = ['[', ']', '(', ')', '{', '}'];
+    for (let item of arr) {
+      const it = new PeekGenerator<string>(array2Gen(item));
+      const token = Token.makeBracket(it);
+      checkToken(token, TokenType.BRACKET, item.trim());
+    }
   });
 });

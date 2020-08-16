@@ -10,7 +10,7 @@ describe('PeekGenerator test', () => {
 
   beforeEach(() => {
     gen = array2Gen(str);
-    iter = new PeekGenerator<string>(gen, 'EOF');
+    iter = new PeekGenerator<string>(gen, '\0');
   })
 
   it('pushBack test', () => {
@@ -36,8 +36,8 @@ describe('PeekGenerator test', () => {
     for (let i of str) {
       equal(iter.next(), i);
     }
-    equal(iter.hasNext(), 'EOF');
-    equal(iter.next(), 'EOF');
+    equal(iter.hasNext(), '\0');
+    equal(iter.next(), '\0');
     equal(iter.hasNext(), false);
   })
 })
