@@ -39,14 +39,14 @@ export class Lexer {
             }
           }
           if (flag) {
-            throw new LexicalException(`cant match commit`)
+            throw new LexicalException(`cant match commit`);
           }
           continue;
         }
       }
 
       if (AlphabetHelper.isBracket(c)) {
-        debugger
+        debugger;
         it.pushBack();
         this.tokens.push(Token.makeBracket(it));
         continue;
@@ -58,7 +58,7 @@ export class Lexer {
         continue;
       }
 
-      if (AlphabetHelper.isLiteral(c)) {
+      if (AlphabetHelper.isLetter(c)) {
         it.pushBack();
         this.tokens.push(Token.makeVarOrKeyword(it));
         continue;
@@ -77,20 +77,23 @@ export class Lexer {
           if (lastToken == null || !lastToken.isScalar()) {
             it.pushBack();
             this.tokens.push(Token.makeNumber(it));
+            continue;
           }
-        } else {
-          it.pushBack();
-          this.tokens.push(Token.makeOperator(it));
         }
+      }
+
+      if (AlphabetHelper.isOperator(c)) {
+        it.pushBack();
+        this.tokens.push(Token.makeOperator(it));
         continue;
       }
     } // end while
     return this.tokens;
   }
 
-  *stream() {
+  *createStream() {
     for (let _ of this.tokens) {
-      yield _;
+      yield <Token>_;
     }
   }
 }

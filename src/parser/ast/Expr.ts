@@ -1,4 +1,3 @@
-import { Emnu } from './../../common/Emnu';
 import { ASTNode } from './ASTNode';
 import { Token } from './../../lexer/Token';
 export class Expr extends ASTNode {
@@ -12,5 +11,13 @@ export class Expr extends ASTNode {
     expr.lexeme = token;
     expr.type = type;
     return expr;
+  }
+
+  get lexeme() {
+    return <Token>this._lexeme;
+  }
+
+  set lexeme(token: Token) {
+    this._lexeme = token;
   }
 }

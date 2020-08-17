@@ -29,7 +29,8 @@ export class Token {
     return (
       this._type == TokenType.INTEGER ||
       this._type == TokenType.STRING ||
-      this._type == TokenType.BOOLEAN
+      this._type == TokenType.BOOLEAN ||
+      this._type == TokenType.NUMBER
     );
   }
 
